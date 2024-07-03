@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arogyam</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+        body {
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        :root {
+            --button-color: #f4fd40;
+            --hover-button-color: #effa1b;
+            --text-color1:#ffffff;
+            --text-color2:#000;
+        }
+
+        @font-face {
+            font-family: 'Randrake';
+            src: url('static/font/Randrake.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .navbar {
+            background-color: transparent !important;
+            /* Make navbar background transparent */
+            position: absolute;
+            /* Position navbar absolutely to allow content behind it */
+            width: 100%;
+            /* Ensure navbar spans the full width */
+            top: 0;
+            padding-bottom: 0px;
+            z-index: 1000;
+            /* Keep navbar on top */
+        }
+
+        .navbar.scrolled {
+            background-color: white !important;
+            /* Change navbar background to white */
+            transition: background-color 0.3s;
+            /* Smooth transition for background color */
+            position: sticky;
+        }
+
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-brand {
+            color: #000 !important;
+            /* Change text color to black */
+        }
+
+        .navbar.scrolled .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+            /* Change hamburger icon color */
+        }
+
+        .navbar-brand {
+            font-size: 2.5rem;
+            color: #f4fd40;
+            font-family: 'Randrake', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .navbar-nav .btn-primary {
+            border-radius: 20px;
+            padding: 5px 20px;
+            margin-top: 5px;
+            font-size: 1.2rem;
+            background-color: #f4fd40;
+            color: #000;
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* Adjust height as needed */
+            overflow: hidden;
+            padding-top: 56px;
+            /* Adjust based on navbar height to prevent content overlap */
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: 100%;
+            height: auto;
+            z-index: -1;
+            /* Ensures the video stays in the background */
+            object-fit: cover;
+
+        }
+
+        .hero-section .container {
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+            padding-right: 2rem;
+            padding-top: 20rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .hero-content .btn-primary {
+            background-color: var(--button-color);
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            color: #000;
+        }
+
+        .hero-content .btn-primary:hover {
+            background-color: var(--hover-button-color);
+        }
+
+
+
+
+
+        .statistics {
+            background-color: #2c3e50;
+            padding: 40px 0;
+            color: #ecf0f1;
+            text-align: center;
+        }
+
+        .statistics .stat-item {
+            flex: 1;
+        }
+
+        .statistics .stat-item h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .statistics .stat-item p {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            text-align: center;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                display: none;
+            }
+
+            .hero-content {
+                padding-top: 8rem;
+            }
+
+            .navbar {
+                background-color: #ffffff !important;
+            }
+
+            .nav-link,
+            .navbar-brand {
+                color: #000 !important;
+
+            }
+
+            .navbar.scrolled {
+                transition: none;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem !important;
+            }
+
+            .nav-link {
+                font-size: 1rem !important;
+            }
+            .navbar-nav .btn-primary{
+                background-color: #f4fd40;
+            color: #000;
+            }
+
+        }
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Arogyam</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Doctors</a></li>
+                    <li class="nav-item login-item"><a class="btn btn-primary" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <video autoplay loop muted class="hero-video">
+            <source src="static/videos/hero3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="container">
+            <div class="hero-content">
+                <h1>We Are Providing Best and Affordable Health Care</h1>
+                <p>Our skilled doctors have tremendous experience with a wide range of diseases to serve the needs of
+                    our patients.</p>
+                <a class="btn btn-primary" href="#">Book an Appointment</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="statistics">
+        <div class="container d-flex justify-content-around">
+            <div class="stat-item">
+                <h2>500+</h2>
+                <p>Patients Every Day</p>
+            </div>
+            <div class="stat-item">
+                <h2>12+</h2>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h2>350+</h2>
+                <p>Diagnosis Verity</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Mediku. All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) { // Adjust this value based on your preference
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
