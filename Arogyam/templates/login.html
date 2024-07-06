@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Health Website</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+        body {
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+
+        :root {
+            --button-color: #f4fd40;
+            --hover-button-color: #effa1b;
+            --text-color1:#ffffff;
+            --text-color2:#000;
+        }
+
+        body,
+        html {
+            height: calc(100% - 70px);
+            margin: 0;
+            margin-top: 70px;
+
+            background: #f7f8fc;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .image-section {
+            background: url('{% static "images/login.jpeg" %}') no-repeat center center;
+            background-size: cover;
+            flex: 1;
+        }
+
+        .image-section,
+        .form-section {
+            width: 600px;
+            /* Adjusted width for 1:1 aspect ratio */
+            height: 600px;
+            /* Adjusted height for 1:1 aspect ratio */
+        }
+
+        .form-section {
+            background: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+
+        }
+
+        .form-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-section p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section .form-control {
+            border-radius: 25px;
+            padding: 10px 20px;
+        }
+
+        .form-section .btn-primary {
+            background-color:var(--button-color);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 10px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s;
+            color: var(--text-color2);
+        }
+
+        .form-section .btn-primary:hover {
+            background-color:var(--hover-button-color);
+        }
+
+        .form-section .social-login img {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .form-section .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-section .footer a {
+            color: #7f56da;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .image-section {
+                display: none;
+            }
+
+            .form-section {
+                background: #f7f8fc;
+                /* Match body background color */
+                box-shadow: none;
+                /* Remove shadow */
+                border: none;
+                /* Remove border */
+                border-radius: 0;
+                /* Remove border radius */
+                width: 100%;
+                /* Ensure it takes full width */
+                margin: 0;
+                /* Reset any margin */
+                padding: 40px;
+                /* Adjust padding as needed, keeping it from the original .form-section */
+            }
+
+            .container {
+                box-shadow: none;
+                /* Remove shadow from container as well */
+                border-radius: 0;
+                /* Remove border radius from container */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="image-section"></div>
+        <div class="form-section">
+            <h2>Hello Again!</h2>
+            <p>Welcome back you've been missed!</p>
+            <form>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Enter Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="form-group text-right">
+                    <a href="#" class="text-muted">Recovery Password</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            <div class="text-center my-3">Or continue with</div>
+            <div class="social-login text-center">
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">
+            </div>
+            <div class="footer">
+                <p>Not a member? <a href="signup.html">Register now</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
