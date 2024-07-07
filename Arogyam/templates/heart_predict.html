@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,37 +10,38 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .navbar {
             background-color: #ffffff;
         }
+
         .navbar-brand {
             font-size: 1.5rem;
             color: #4c4c6d;
         }
+
         .navbar-nav .nav-link {
             color: #4c4c6d;
             margin-right: 15px;
         }
+
         .navbar-nav .btn-primary {
             border-radius: 20px;
             padding: 5px 20px;
         }
+
         .form-section {
-            background-color: #f7f8fc;
+            background-color: #ffffff;
             padding: 50px 0;
         }
+
         .form-section h2 {
             font-size: 2rem;
             margin-bottom: 20px;
             color: #333;
             text-align: center;
         }
-        .form-section .form-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+
         .form-section .btn-primary {
             background-color: #5c67d2;
             border: none;
@@ -47,22 +49,30 @@
             padding: 10px 20px;
             font-size: 1.1rem;
         }
+
         .form-section .btn-primary:hover {
             background-color: #4a52b8;
         }
+
         .footer {
             background-color: #f8f9fa;
             padding: 20px 0;
             text-align: center;
             color: #777;
         }
+
+        .navbar-toggler-icon {
+            background-image: url('data:image/svg+xml;charset=utf8,<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path stroke="rgba(0, 0, 0, 1)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">HealthMatch</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="{% url "home" %}">Arogyam</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -70,8 +80,7 @@
                     <li class="nav-item"><a class="nav-link" href="#">For sponsors</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">For patients</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">For sites</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About HealthMatch</a></li>
-                    <li class="nav-item"><a class="btn btn-primary" href="#">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About Arogyam</a></li>
                 </ul>
             </div>
         </div>
@@ -82,83 +91,106 @@
             <h2>Heart Disease Detection Form</h2>
             <div class="row justify-content-center">
                 <div class="col-md-8 form-container">
-                    <form>
-                        <div class="form-group">
-                            <label for="age">Age</label>
-                            <input type="number" class="form-control" id="age" placeholder="Enter your age">
-                        </div>
-                        <div class="form-group">
-                            <label for="sex">Sex</label>
-                            <select class="form-control" id="sex">
-                                <option value="1">Male</option>
-                                <option value="0">Female</option>
-                            </select>
+                    <form class="p-5 rounded shadow" action="{% url 'heart_result' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="age">Age</label>
+                                <input type="number" class="form-control" id="age" name="age" placeholder="Enter Age" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="sex">Sex</label>
+                                <select id="sex" name="sex" class="form-control" required>
+                                    <option value="" disabled selected>Choose...</option>
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="cp">Chest Pain Type</label>
-                            <select class="form-control" id="cp">
-                                <option value="0">Typical Angina</option>
-                                <option value="1">Atypical Angina</option>
-                                <option value="2">Non-anginal Pain</option>
-                                <option value="3">Asymptomatic</option>
+                            <select id="cp" name="cp" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="0">asymptomatic</option>
+                                <option value="1">atypical angina</option>
+                                <option value="2">non-anginal pain</option>
+                                <option value="3">typical angina</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="trestbps">Resting Blood Pressure (in mm Hg)</label>
-                            <input type="number" class="form-control" id="trestbps" placeholder="Enter resting blood pressure">
+                            <label for="trestbps">Resting Blood Pressure</label>
+                            <input type="number" class="form-control" id="trestbps" name="trestbps"
+                                placeholder="Enter Resting Blood Pressure" required>
                         </div>
                         <div class="form-group">
-                            <label for="chol">Cholesterol (in mg/dl)</label>
-                            <input type="number" class="form-control" id="chol" placeholder="Enter cholesterol level">
+                            <label for="chol">Serum Cholesterol</label>
+                            <input type="number" class="form-control" id="chol" name="chol"
+                                placeholder="Enter Serum Cholesterol" required>
                         </div>
                         <div class="form-group">
-                            <label for="fbs">Fasting Blood Sugar &gt; 120 mg/dl</label>
-                            <select class="form-control" id="fbs">
-                                <option value="1">True</option>
-                                <option value="0">False</option>
+                            <label for="fbs">Fasting Blood Sugar</label>
+                            <select id="fbs" name="fbs" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="1">True (> 120 mg/dl)</option>
+                                <option value="0">False (<= 120 mg/dl)</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="restecg">Resting Electrocardiographic Results</label>
-                            <select class="form-control" id="restecg">
-                                <option value="0">Normal</option>
-                                <option value="1">Having ST-T wave abnormality</option>
-                                <option value="2">Showing probable or definite left ventricular hypertrophy</option>
+                            <select id="restecg" name="restecg" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="0">Showing probable or definite left ventricular hypertrophy by Estes
+                                    criteria</option>
+                                <option value="1">Normal</option>
+                                <option value="2">Having ST-T wave abnormality (T wave inversions and/or ST elevation or
+                                    depression of > 0.05 mV)</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="thalach">Maximum Heart Rate Achieved</label>
-                            <input type="number" class="form-control" id="thalach" placeholder="Enter maximum heart rate achieved">
+                            <input type="number" class="form-control" id="thalach" name="thalach"
+                                placeholder="Enter Maximum Heart Rate Achieved" required>
                         </div>
                         <div class="form-group">
                             <label for="exang">Exercise Induced Angina</label>
-                            <select class="form-control" id="exang">
+                            <select id="exang" name="exang" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="oldpeak">ST Depression Induced by Exercise Relative to Rest</label>
-                            <input type="number" step="0.1" class="form-control" id="oldpeak" placeholder="Enter ST depression value">
+                            <label for="oldpeak">Oldpeak</label>
+                            <input type="number" class="form-control" id="oldpeak" name="oldpeak"
+                                placeholder="Enter Oldpeak" required>
                         </div>
                         <div class="form-group">
                             <label for="slope">Slope of the Peak Exercise ST Segment</label>
-                            <select class="form-control" id="slope">
-                                <option value="0">Upsloping</option>
-                                <option value="1">Flat</option>
-                                <option value="2">Downsloping</option>
+                            <select id="slope" name="slope" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="1">Upsloping</option>
+                                <option value="2">Flat</option>
+                                <option value="3">Downsloping</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="ca">Number of Major Vessels (0-3) Colored by Fluoroscopy</label>
-                            <input type="number" class="form-control" id="ca" placeholder="Enter number of major vessels">
+                            <label for="ca">Number of Major Vessels</label>
+                            <select id="ca" name="ca" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="thal">Thalassemia</label>
-                            <select class="form-control" id="thal">
-                                <option value="1">Normal</option>
-                                <option value="2">Fixed Defect</option>
-                                <option value="3">Reversable Defect</option>
+                            <select id="thal" name="thal" class="form-control" required>
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="1">Fixed defect (no blood flow in some part of the heart)</option>
+                                <option value="2">Normal blood flow</option>
+                                <option value="3">Reversible defect (a blood flow is observed but it is not normal)
+                                </option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
@@ -169,7 +201,7 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2024 HealthMatch. All rights reserved.</p>
+        <p>&copy; 2024 Arogyam. All rights reserved.</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -177,4 +209,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
+
 </html>
