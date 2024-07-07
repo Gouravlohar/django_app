@@ -3,7 +3,9 @@ import pickle
 import numpy as np
 from django.conf import settings
 import os
-
+file_path = os.path.join(settings.BASE_DIR,'model', 'heart_predict.pkl')
+with open(file_path, 'rb') as file:
+    model1 = pickle.load(file)
 
 # Create your views here.
 def index (request):
@@ -22,9 +24,7 @@ def heart_predict(request):
 
 
 def heart_result(request):
-    file_path = os.path.join(settings.BASE_DIR,'model', 'heart_predict.pkl')
-    with open(file_path, 'rb') as file:
-            model1 = pickle.load(file)
+    
     if request.method == 'POST':    
         age = int(request.POST.get('age'))
         sex = int(request.POST.get('sex'))
